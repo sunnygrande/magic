@@ -27,7 +27,7 @@
             "purpose": "maskable"
           }
     ],
-    "start_url": "magic/todo",
+    "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#3f51b5"
