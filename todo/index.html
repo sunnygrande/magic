@@ -95,7 +95,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker
-            .register("/basicweb/wavejavascript/todo/service-worker.js")
+            .register("/todo/service-worker.js")
             .then(function (registration) {
               console.log(
                 "ServiceWorker registration successful with scope: ",
