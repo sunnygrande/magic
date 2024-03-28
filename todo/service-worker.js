@@ -23,14 +23,12 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Service Worker: Caching URLs');
-        console.log('Caching URL:', urlsToCache[0]); // Log the specific URL
-        return cache.addAll(urlsToCache[0]).catch(error => {
-          console.error(`Failed to cache ${urlsToCache[0]}:`, error);
+        return cache.addAll(urlsToCache).catch(error => {
+          console.error(`Failed to cache URLs:`, error);
         });
       })
   );
 });
-
 
 
 self.addEventListener('fetch', function(event) {
