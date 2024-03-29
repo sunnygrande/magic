@@ -6,17 +6,17 @@ workbox.routing.registerRoute(
 
 const CACHE_NAME = 'my-pwa-cache-v1';
 const urlsToCache = [
-  '/basicweb/wavejavascript/todo/index.html',
-  '/basicweb/wavejavascript/todo/todo.css',
-  '/basicweb/wavejavascript/todo/todo.js',
-  '/basicweb/wavejavascript/todo/navbar-template.html',
-  '/basicweb/wavejavascript/todo/manifest.json',
-  '/basicweb/wavejavascript/todo/profile/',
-  '/basicweb/wavejavascript/todo/service/',
-  '/basicweb/wavejavascript/todo/heal/',
-  '/basicweb/wavejavascript/todo/questDesign/',
-  '/basicweb/wavejavascript/todo/logo.png',
-  '/basicweb/wavejavascript/todo/offline.html'
+ '/todo/index.html',
+  '/todo/todo.css',
+  '/todo/todo.js',
+  '/todo/navbar-template.html',
+  '/todo/manifest.json',
+  '/todo/profile/',
+  '/todo/service/',
+  '/todo/heal/',
+  '/todo/questDesign/',
+  '/todo/logo.png',
+  '/todo/offline.html'
 ];
 
 self.addEventListener('install', function(event) {
