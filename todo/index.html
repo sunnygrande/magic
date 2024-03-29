@@ -62,8 +62,8 @@
               />
               <p class="card__name">Me</p>
               <div class="grid-container">
-                <div class="grid-child-posts">0 ATK</div>
-                <div class="grid-child-followers">1012 HP</div>
+                <div class="heroAtk">0 <span>ATK</span></div>
+                <div class="heroHp">1012 <span>HP</span></div>
               </div>
               <form id="pushupForm">
                 <div class="mt-3 d-flex flex-column align-items-center">
@@ -78,8 +78,16 @@
                       class="btn btn-success mt-2"
                     />
                   </div>
+                  <br />
+                  <input
+                    type="button"
+                    value="battle"
+                    onclick="battle()"
+                    class="btn btn-danger"
+                  />
                 </div>
               </form>
+              <span class="mt-3" id="battleResult"></span>
             </div>
           </div>
         </div>
@@ -91,11 +99,12 @@
       crossorigin="anonymous"
     ></script>
     <script src="todo.js"></script>
+    <script src="service/battle.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker
-            .register("/todo/service-worker.js")
+            .register("/basicweb/wavejavascript/todo/service-worker.js")
             .then(function (registration) {
               console.log(
                 "ServiceWorker registration successful with scope: ",

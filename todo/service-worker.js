@@ -6,15 +6,17 @@ workbox.routing.registerRoute(
 
 const CACHE_NAME = 'my-pwa-cache-v1';
 const urlsToCache = [
-  '/todo/index.html',
-  '/todo/todo.css',
-  '/todo/todo.js',
-  '/todo/navbar-template.html',
-  '/todo/manifest.json',
-  '/todo/profile/navabar-template.html',
-  '/todo/profile/profile.css',
-  '/todo/profile/profile.html',
-  '/todo/profile/profile.js'
+  '/basicweb/wavejavascript/todo/index.html',
+  '/basicweb/wavejavascript/todo/todo.css',
+  '/basicweb/wavejavascript/todo/todo.js',
+  '/basicweb/wavejavascript/todo/navbar-template.html',
+  '/basicweb/wavejavascript/todo/manifest.json',
+  '/basicweb/wavejavascript/todo/profile/',
+  '/basicweb/wavejavascript/todo/service/',
+  '/basicweb/wavejavascript/todo/heal/',
+  '/basicweb/wavejavascript/todo/questDesign/',
+  '/basicweb/wavejavascript/todo/logo.png',
+  '/basicweb/wavejavascript/todo/offline.html'
 ];
 
 self.addEventListener('install', function(event) {
@@ -23,12 +25,14 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Service Worker: Caching URLs');
-        return cache.addAll(urlsToCache).catch(error => {
-          console.error(`Failed to cache URLs:`, error);
+        console.log('Caching URL:', urlsToCache[0]); // Log the specific URL
+        return cache.addAll(urlsToCache[0]).catch(error => {
+          console.error(`Failed to cache ${urlsToCache[0]}:`, error);
         });
       })
   );
 });
+
 
 
 self.addEventListener('fetch', function(event) {

@@ -146,11 +146,20 @@ for (const todo of todoList) {
 
 const form = document.getElementById('pushupForm');
 const pushupCounterInput = document.getElementById('pushupCounter');
-const postsElement = document.querySelector('.grid-child-posts');
+const postsElement = document.querySelector('.heroAtk');
+const heroHpElement =document.querySelector('.heroHp');
 
 let ATK = localStorage.getItem('ATK') ? parseInt(localStorage.getItem('ATK')) : 0; // Initial ATK value
 
+let HP = localStorage.getItem('HP') ? parseInt(localStorage.getItem('HP')) : 1000;
+
 postsElement.textContent = ATK + ' ATK'; // Display the initial ATK value
+
+heroHpElement.textContent = HP + ' HP';
+
+localStorage.setItem('HP',HP.toString());
+
+console.log(localStorage.getItem('HP')); //why 18?
 
 
 form.addEventListener('submit', function(event) {
