@@ -151,7 +151,7 @@ const heroHpElement =document.querySelector('.heroHp');
 
 let ATK = localStorage.getItem('ATK') ? parseInt(localStorage.getItem('ATK')) : 0; // Initial ATK value
 
-let HP = localStorage.getItem('HP') ? parseInt(localStorage.getItem('HP')) : 1000;
+let HP = localStorage.getItem('HP') ? parseInt(localStorage.getItem('HP')) : 0;
 
 postsElement.textContent = ATK + ' ATK'; // Display the initial ATK value
 
