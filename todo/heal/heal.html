@@ -18,72 +18,43 @@
     <div id="navbar-placeholder"></div>
 
     <div class="container">
-      <div class="card">
-        <img
-          src="https://static-00.iconduck.com/assets.00/meditation-icon-2048x1731-0dr119bk.png"
-          alt="Person"
-          class="card__image"
-        />
-        <p class="card__name">Meditation</p>
-        <div class="grid-container"></div>
-        <ul class="social-icons">
-          <li>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-codepen"></i></a>
-          </li>
-        </ul>
-        <button class="btn draw-border" onclick="addmHP()">5 mins</button>
-        <button class="btn draw-border" onclick="addMHP()">10 mins</button>
-      </div>
-      <div class="card">
-        <img
-          src="https://as2.ftcdn.net/v2/jpg/01/87/97/37/1000_F_187973752_aFbzGjWD91HUJhCD8lTwBWN9zYCyAPFb.jpg"
-          alt="Person"
-          class="card__image"
-        />
-        <p class="card__name">Healthy food</p>
-        <div class="grid-container"></div>
-
-        <button class="btn draw-border" onclick="addf()">small snack</button>
-        <button class="btn draw-border" onclick="addF()">medium snack</button>
-        <button class="btn draw-border" onclick="addFO()">big snack</button>
-      </div>
-      <div class="card">
-        <img
-          src="https://logowik.com/content/uploads/images/zzz-black-emoji9377.logowik.com.webp"
-          alt="Person"
-          class="card__image"
-        />
-        <p class="card__name">Power Nap</p>
-        <div class="grid-container">
-          <div class="grid-child-posts">902 Post</div>
-
-          <div class="grid-child-followers">1300 Likes</div>
+      <div class="row justify-content-evenly">
+        <div class="card col-auto mb-2">
+          <img
+            src="https://static-00.iconduck.com/assets.00/meditation-icon-2048x1731-0dr119bk.png"
+            alt="Person"
+            class="card__image"
+          />
+          <p class="card__name">Meditation</p>
+          <div class="grid-container"></div>
+          <button class="btn draw-border" onclick="addmHP()">5 mins</button>
+          <button class="btn draw-border" onclick="addMHP()">10 mins</button>
         </div>
-        <ul class="social-icons">
-          <li>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-codepen"></i></a>
-          </li>
-        </ul>
-        <button class="btn draw-border" onclick="addn()">10 mins</button>
-        <button class="btn draw-border" onclick="addN()">More</button>
+
+        <div class="card col-auto mb-2">
+          <img
+            src="https://as2.ftcdn.net/v2/jpg/01/87/97/37/1000_F_187973752_aFbzGjWD91HUJhCD8lTwBWN9zYCyAPFb.jpg"
+            alt="Person"
+            class="card__image"
+          />
+          <p class="card__name">Healthy food</p>
+          <div class="grid-container"></div>
+
+          <button class="btn draw-border" onclick="addf()">small snack</button>
+          <button class="btn draw-border" onclick="addF()">medium snack</button>
+          <button class="btn draw-border" onclick="addFO()">big snack</button>
+        </div>
+
+        <div class="card col-auto">
+          <img
+            src="https://logowik.com/content/uploads/images/zzz-black-emoji9377.logowik.com.webp"
+            alt="Person"
+            class="card__image"
+          />
+          <p class="card__name">Power Nap</p>
+          <button class="btn draw-border" onclick="addn()">10 mins</button>
+          <button class="btn draw-border" onclick="addN()">More</button>
+        </div>
       </div>
     </div>
 
