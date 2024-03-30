@@ -25,7 +25,7 @@ const villainHpElement = document.querySelector('.villainHp');
 
 let villain = {
   atk: parseInt(localStorage.getItem('VATK')) || 0,
-  hp: parseInt(localStorage.getItem('VHP')) || 100,
+  hp: parseInt(localStorage.getItem('VHP')) || 0,
 };
 
 villainAtkElement.textContent = villain.atk + ' ATK';
