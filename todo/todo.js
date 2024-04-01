@@ -20,6 +20,8 @@ let todoItemsContainer = document.getElementById("todoItemsContainer");
 const addTodoButton = document.getElementById("addTodoButton");
 const save = document.getElementById("savebtn");
 
+
+
 // let todoList = [
 //     {Text : "homework",uniqueId:1},{Text :"chess",uniqueId:2},{Text : "resume",uniqueId:3}
 // ];
@@ -103,9 +105,19 @@ function createNewTodoObj(todo) {
     deleteIconContainer.appendChild(deleteIcon);
 
     deleteIcon.onclick = function(){
-        todoElement = document.getElementById(todoId);
-        todoItemsContainer.removeChild(todoElement); 
-        todoList.pop(todoElement);
+    // Find the index of the todo item in the array
+    let todoIndex = todoList.findIndex(function(todoItem) {
+        return todoItem.uniqueId === todo.uniqueId;
+    });
+
+    // Remove the todo item from the array
+    if (todoIndex !== -1) {
+        todoList.splice(todoIndex, 1);
+    }
+
+    // Remove the todo item from the UI
+    todoElement = document.getElementById(todoId);
+    todoItemsContainer.removeChild(todoElement);
     }
 }
 
@@ -159,7 +171,7 @@ heroHpElement.textContent = HP + ' HP';
 
 localStorage.setItem('HP',HP.toString());
 
-console.log(localStorage.getItem('HP')); //why 18?
+console.log(localStorage.getItem('HP')); 
 
 
 form.addEventListener('submit', function(event) {
@@ -174,6 +186,11 @@ form.addEventListener('submit', function(event) {
 
   pushupCounterInput.value = ''; // Clear input
 });
+
+
+
+
+
 
 
 
