@@ -14,47 +14,66 @@ function loadNavbar() {
   // Load the navbar on page load
   document.addEventListener("DOMContentLoaded", loadNavbar);
 
-const userInputElement = document.getElementById("todoUserInput");
-const userImageElement = document.getElementById("todoUserImageInput");
-const imagePreviewContainer = document.getElementById("imagePreviewContainer");
-
-userImageElement.addEventListener("change", function() {
-    imagePreviewContainer.innerHTML = ''; // Clear existing previews
-
-    for (let i = 0; i < userImageElement.files.length; i++) {
-        const file = userImageElement.files[i];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            const imageElement = document.createElement("img");
-            imageElement.src = e.target.result;
-            imageElement.classList.add("preview-image");
-
-            const insertButton = document.createElement("button");
-            insertButton.textContent = "Insert Image";
-            insertButton.onclick = function() {
-                insertImageIntoTextarea(e.target.result);
-            };
-
-            const imageWrapper = document.createElement("div");
-            imageWrapper.classList.add("image-wrapper");
-            imageWrapper.appendChild(imageElement);
-            imageWrapper.appendChild(insertButton);
-
-            imagePreviewContainer.appendChild(imageWrapper);
-        };
-
-        reader.readAsDataURL(file);
-    }
-});
-
-function insertImageIntoTextarea(imageUrl) {
-    const cursorPosition = userInputElement.selectionStart;
-    const textBefore = userInputElement.value.substring(0, cursorPosition);
-    const textAfter = userInputElement.value.substring(cursorPosition);
-
-    userInputElement.value = `${textBefore}<img src="${imageUrl}" class="embedded-image" />${textAfter}`;
-}
+  const userInputElement = document.getElementById("todoUserInput");
+  const userImageElement = document.getElementById("todoUserImageInput");
+  const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+  
+  userImageElement.addEventListener("change", function () {
+      imagePreviewContainer.innerHTML = ''; // Clear existing previews
+  
+      for (let i = 0; i < userImageElement.files.length; i++) {
+          const file = userImageElement.files[i];
+          const reader = new FileReader();
+  
+          reader.onload = function (e) {
+              const imageElement = document.createElement("img");
+              imageElement.src = e.target.result;
+              imageElement.classList.add("preview-image");
+  
+              const insertButton = document.createElement("button");
+              insertButton.textContent = "Insert Image";
+              insertButton.onclick = function () {
+                  insertImagePlaceholder(e.target.result);
+              };
+  
+              const imageWrapper = document.createElement("div");
+              imageWrapper.classList.add("image-wrapper");
+              imageWrapper.appendChild(imageElement);
+              imageWrapper.appendChild(insertButton);
+  
+              imagePreviewContainer.appendChild(imageWrapper);
+          };
+  
+          reader.readAsDataURL(file);
+      }
+  });
+  
+  function insertImagePlaceholder(imageUrl) {
+      const cursorPosition = userInputElement.selectionStart;
+      const textBefore = userInputElement.value.substring(0, cursorPosition);
+      const textAfter = userInputElement.value.substring(cursorPosition);
+  
+      // Insert a placeholder text instead of the full <img> tag
+      const placeholder = `[Image]`;
+  
+      userInputElement.value = `${textBefore}${placeholder}${textAfter}`;
+  }
+  
+  // Function to replace placeholder with the actual image tag (when displaying content)
+  function renderContent() {
+      const content = userInputElement.value;
+  
+      // Replace [Image] placeholder with the actual <img> tag (using the stored image URL)
+      const renderedContent = content.replace(/\[Image\]/g, function () {
+          // You can store the image URL or any relevant data somewhere and retrieve it here
+          // For simplicity, let's assume the image URL is stored globally (you might adjust this part)
+          return '<img src="your_image_url_here" class="embedded-image" />';
+      });
+  
+      // Display the rendered content (for example, in a div or another textarea)
+      document.getElementById("outputContent").innerHTML = renderedContent;
+  }
+  
 
 // Function to get todo list from local storage
 function getTodoListFromLocal() {
@@ -67,6 +86,7 @@ let todoList_i = getTodoListFromLocal();
 let count = todoList_i.length;
 
 // Create a new todo task on the UI
+// Updated function to create new todo object and render it
 function createNewTodoObj(todo) {
     let checkboxId = "checkbox" + todo.uniqueId;
     let labelId = "label" + todo.uniqueId;
@@ -95,7 +115,11 @@ function createNewTodoObj(todo) {
         labelElement.classList.add("checked");
     }
 
-    labelElement.innerHTML = todo.Text; // Render text with images
+    // Replace [Image] placeholders with actual <img> tags
+    let renderedText = todo.Text.replace(/\[Image\]/g, function() {
+        return `<img src="${todo.imageUrl}" class="embedded-image" />`;
+    });
+    labelElement.innerHTML = renderedText;
 
     labelContainer.appendChild(labelElement);
 
@@ -141,10 +165,10 @@ addTodoButton.onclick = function () {
     count++;
     
     let newTodo = {
-        Text: userInputValue,
+        Text: userInputValue.replace(/\[Image\]/g, "[Image]"), // Store the text with the [Image] placeholder
         uniqueId: count,
         isChecked: false,
-        imageUrl: userImageFile ? URL.createObjectURL(userImageFile) : null
+        imageUrl: userImageFile ? URL.createObjectURL(userImageFile) : null // Store the image URL
     };
 
     todoList_i.push(newTodo);
@@ -160,10 +184,10 @@ const saveButton = document.getElementById("savebtni");
 saveButton.onclick = function () {
     console.log("Saving todo list:", todoList_i); // Log the current todoList
     localStorage.setItem("todoList_i", JSON.stringify(todoList_i));
-    
 }
 
 // Render existing todos from local storage on page load
 for (const todo of todoList_i) {
     createNewTodoObj(todo);
 }
+
